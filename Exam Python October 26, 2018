@@ -1,0 +1,491 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Before you turn this problem in, make sure everything runs as expected. First, **restart the kernel** (in the menubar, select Kernel$\\rightarrow$Restart) and then **run all cells** (in the menubar, select Cell$\\rightarrow$Run All).\n",
+    "\n",
+    "Make sure you fill in any place that says `YOUR CODE HERE` or \"YOUR ANSWER HERE\", as well as your name and collaborators below:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "NAME = \"Victor Digues Lacerda, SNR:2007801\"\n",
+    "COLLABORATORS = \"\""
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "---"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "deletable": false,
+    "editable": false,
+    "nbgrader": {
+     "checksum": "e53eb7da4b90cccdbeb5924177a0d295",
+     "grade": false,
+     "grade_id": "cell-bace731f185b39bb",
+     "locked": true,
+     "schema_version": 1,
+     "solution": false
+    }
+   },
+   "source": [
+    "Fill in the cell above to provide us with your name and student number, like\n",
+    "\n",
+    "NAME = \"Adam Smith, #student number#\"\n",
+    "\n",
+    "where you replace \"#student number#\" with your ... (very good!)\n",
+    "\n",
+    "Unfortunately, you are not allowed to work with \"COLLABORATORS\" in this exam."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "deletable": false,
+    "editable": false,
+    "nbgrader": {
+     "checksum": "517bf84e44d5142a614681acb261dbaf",
+     "grade": false,
+     "grade_id": "cell-895e9a7b94992ec9",
+     "locked": true,
+     "schema_version": 1,
+     "solution": false
+    }
+   },
+   "source": [
+    "# exam October 26th, 2018\n",
+    "\n",
+    "With this python part of the exam you can earn at max. 4 points.\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "deletable": false,
+    "editable": false,
+    "nbgrader": {
+     "checksum": "3cec389d2e77633d462f7295d7f70956",
+     "grade": false,
+     "grade_id": "cell-540987818af25557",
+     "locked": true,
+     "schema_version": 1,
+     "solution": false
+    }
+   },
+   "source": [
+    "\n",
+    "In the first cell of the notebook, give us your name and student number in the way indicated above. \n",
+    "\n",
+    "Fill in the notebook (see below for code cells and text cells that you need to fill in).\n",
+    "\n",
+    "If you look at the menus above (File, Edit, View etc.), there is one called \"Cell\". If you click on this, you can change the \"Cell Type\". Choose \"Code\" when you are typing python or R code. Choose \"Markdown\" when you are typing, well, markdown.\n",
+    "\n",
+    "When you finish the notebook, make sure that you **save it with the output of your code included**. \n",
+    "\n",
+    "Then put it on github, e.g. by dragging it onto github (see instructions below). \n",
+    "\n",
+    "Finally, add a link to your README file with the name of this exam: \"Exam October 26, 2018\".\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "deletable": false,
+    "editable": false,
+    "nbgrader": {
+     "checksum": "8b9030a739507c0cac97629fc8011ccf",
+     "grade": false,
+     "grade_id": "cell-e1cf88cb799f1f43",
+     "locked": true,
+     "schema_version": 1,
+     "solution": false
+    }
+   },
+   "source": [
+    "## Analyzing functions\n",
+    "\n",
+    "We start by importing the usual libraries."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {
+    "deletable": false,
+    "editable": false,
+    "nbgrader": {
+     "checksum": "7bd770ef54db47c3b6c8d0e31f6baef6",
+     "grade": false,
+     "grade_id": "cell-b895769bf40e183a",
+     "locked": true,
+     "schema_version": 1,
+     "solution": false
+    }
+   },
+   "outputs": [],
+   "source": [
+    "import matplotlib.pyplot as plt\n",
+    "import pandas as pd\n",
+    "import numpy as np\n",
+    "from scipy import optimize\n",
+    "%matplotlib inline"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "deletable": false,
+    "editable": false,
+    "nbgrader": {
+     "checksum": "b0001458f8f400aec94dbd2f4291cd05",
+     "grade": false,
+     "grade_id": "cell-83284c4090d6de8c",
+     "locked": true,
+     "schema_version": 1,
+     "solution": false
+    }
+   },
+   "source": [
+    "#### a) [0.5 points] Define a function $f(x) = x^4-2x^2+0.5$."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {
+    "deletable": false,
+    "nbgrader": {
+     "checksum": "c6a538c0a85c04ca8d1b721f21b02183",
+     "grade": true,
+     "grade_id": "cell-7770128c0a989c60",
+     "locked": false,
+     "points": 0.5,
+     "schema_version": 1,
+     "solution": true
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "8.5"
+      ]
+     },
+     "execution_count": 2,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "def f(x):\n",
+    "    f = x**4-2*x**2+0.5\n",
+    "    return f \n",
+    "f(2) #checking my function# "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "deletable": false,
+    "editable": false,
+    "nbgrader": {
+     "checksum": "c54c2b07b65dcaf674e640be88b68be9",
+     "grade": false,
+     "grade_id": "cell-3b8ee172d9950128",
+     "locked": true,
+     "schema_version": 1,
+     "solution": false
+    }
+   },
+   "source": [
+    "#### b) [1 point] Plot $f$ as a function of $x$. Experiment a bit with the range of $x$ values for which you plot $f$ such that the important features of $f$ are clearly visible. Put the label $x$ on the horizontal axis and label $f$ on the vertical axis."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "metadata": {
+    "deletable": false,
+    "nbgrader": {
+     "checksum": "6e37628c32359b4e4f914065399bcb41",
+     "grade": true,
+     "grade_id": "cell-a5e7853f661e19b2",
+     "locked": false,
+     "points": 1,
+     "schema_version": 1,
+     "solution": true
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "<matplotlib.text.Text at 0x7ff8d6372eb8>"
+      ]
+     },
+     "execution_count": 3,
+     "metadata": {},
+     "output_type": "execute_result"
+    },
+    {
+     "data": {
+      "image/png": "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\nYII=\n",
+      "text/plain": [
+       "<matplotlib.figure.Figure at 0x7ff8d63ca518>"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "x_range = np.arange(-1.5, 1.5, 0.01)\n",
+    "plt.scatter(x_range, [f(x) for x in x_range])\n",
+    "plt.xlabel(\"$x$\")\n",
+    "plt.ylabel(\"$f$\")\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "deletable": false,
+    "editable": false,
+    "nbgrader": {
+     "checksum": "f288e42db2718f6546a6c10e7187400f",
+     "grade": false,
+     "grade_id": "cell-4b33762aa4a601fe",
+     "locked": true,
+     "schema_version": 1,
+     "solution": false
+    }
+   },
+   "source": [
+    "#### c) [1. point] Calculate numerically the two minima of the function $f$. For which values of $x$ do we have a minimum?"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "metadata": {
+    "deletable": false,
+    "nbgrader": {
+     "checksum": "16debdd606d4af967efa09bbca10b9bb",
+     "grade": true,
+     "grade_id": "cell-5ee215676b91f504",
+     "locked": false,
+     "points": 1,
+     "schema_version": 1,
+     "solution": true
+    }
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Optimization terminated successfully.\n",
+      "         Current function value: -0.500000\n",
+      "         Iterations: 10\n",
+      "         Function evaluations: 20\n",
+      "Optimization terminated successfully.\n",
+      "         Current function value: -0.500000\n",
+      "         Iterations: 10\n",
+      "         Function evaluations: 20\n",
+      "[-1.]\n",
+      "[1.]\n"
+     ]
+    }
+   ],
+   "source": [
+    "minimum1 = optimize.fmin(lambda x: f(x), -1)\n",
+    "minimum2 = optimize.fmin(lambda x: f(x), 1)\n",
+    "\n",
+    "print(minimum1)\n",
+    "print(minimum2)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "deletable": false,
+    "nbgrader": {
+     "checksum": "6bdbb321198a6c00bcf368dbba0b5779",
+     "grade": true,
+     "grade_id": "cell-6d4c0ac6805dcb2e",
+     "locked": false,
+     "points": 0,
+     "schema_version": 1,
+     "solution": true
+    }
+   },
+   "source": [
+    "f(x) has two minima, one at x=-1, and the other at x=1."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "deletable": false,
+    "editable": false,
+    "nbgrader": {
+     "checksum": "f9ee61d343f161ef0bda8be0eef87059",
+     "grade": false,
+     "grade_id": "cell-3cc076ae39753881",
+     "locked": true,
+     "schema_version": 1,
+     "solution": false
+    }
+   },
+   "source": [
+    "#### d) [0.5 points] Calculate numerically the local maximum of $f$. For what value of $x$ do we have a local maximum?"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "metadata": {
+    "deletable": false,
+    "nbgrader": {
+     "checksum": "6ac5f7f87f79a5a580298b70eb6603c6",
+     "grade": true,
+     "grade_id": "cell-0f18e4fded25833f",
+     "locked": false,
+     "points": 0.5,
+     "schema_version": 1,
+     "solution": true
+    }
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Optimization terminated successfully.\n",
+      "         Current function value: -0.500000\n",
+      "         Iterations: 3\n",
+      "         Function evaluations: 6\n",
+      "[0.]\n"
+     ]
+    }
+   ],
+   "source": [
+    "maximum = optimize.fmin(lambda x: -f(x), 0)\n",
+    "\n",
+    "print(maximum)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "f(x) have a local maximum at x=0."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "#### e) [1 point] Calculate numerically for which values of $x$ we have $f(x) = 0$."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "metadata": {
+    "deletable": false,
+    "nbgrader": {
+     "checksum": "0f23770a6c058f433beccc75429b57dc",
+     "grade": true,
+     "grade_id": "cell-e88dc4842fb2c38c",
+     "locked": false,
+     "points": 1,
+     "schema_version": 1,
+     "solution": true
+    }
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[-1.30656296 -0.5411961   0.5411961   1.30656296]\n"
+     ]
+    }
+   ],
+   "source": [
+    "root = optimize.fsolve(f, [-1.5,-0.5,0.5,1.5]) \n",
+    "\n",
+    "print(root)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Github\n",
+    "\n",
+    "After you have finished, we need to upload this notebook on github."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Instructions on how to upload this on github can be found [on this page](http://janboone.github.io/programming-for-economists/github.html). This page has two screencasts: one shows how to drag the notebook onto your github page, the other shows how you can use the command line to upload your notebook.\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Remember to update the README file in your repository to include a link to this notebook on github.\n",
+    "\n",
+    "\n",
+    "The links that you should post start with “github.com/” and are NOT of the form “http://localhost”. Make sure you test your links after uploading."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "anaconda-cloud": {},
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.5.3"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 1
+}
